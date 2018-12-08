@@ -1,23 +1,30 @@
-import m from "mithril";
-// import "./JsxNamespace";
+import m, { Attributes } from "mithril";
+import { MitrhilTsxComponent } from "./JsxNamespace";
 
-import { MithrilTsxComponent } from "mithril-tsx-component";
+// import { MithrilTsxComponent } from "mithril-tsx-component";
 
-interface Attrs {
-  Comp: any;
+export interface Attrs {
+  title: (t: string) => JSX.Element;
+  // title: string;
 }
 
-export default class HelloWorld extends MithrilTsxComponent<Attrs> {
+class Testing extends MitrhilTsxComponent {
+  view(vnode: m.CVnode) {
+    return <h1>Cool</h1>;
+  }
+}
+
+export default class HelloWorld extends MitrhilTsxComponent<Attrs> {
   count = 12;
-  view({ attrs }: m.Vnode<Attrs, this>) {
-    let Comp = attrs.Comp;
+
+  view({ attrs, children }: m.CVnode<Attrs>): m.CVnode<Attrs> {
+    let Comp = attrs.title;
     return (
-      <div class="main">
-        <h1>Hello World!!!! {this.count}</h1>
-        <div>
-          <Comp title="fdafd" />
-        </div>
-      </div>
+      <h1>
+        <Testing />
+        {children}
+        {Comp("afdafd")}
+      </h1>
     );
   }
 }

@@ -1,22 +1,22 @@
-import m from "mithril";
+import m, { Attributes } from "mithril";
 import HelloWorld from "./HelloWorld";
-// import "./JsxNamespace";
+import "./JsxNamespace";
+import { MitrhilTsxComponent } from "./JsxNamespace";
 
 m.route.prefix("");
 
-const Strong = {
-  view: (vnode: m.Vnode<{ title: string }, {}>) => (
-    <strong>{vnode.attrs.title}</strong>
-  )
-};
+class Test extends MitrhilTsxComponent<{ title: string }> {
+  // constructor(vnode: m.CVnode<{ title: string }>) {
+  //   super(vnode);
+  // }
+  view(vnode: m.CVnode<{ title: string }>) {
+    return <h1 style="color: red;">{vnode.attrs.title}</h1>;
+  }
+}
 
-class App implements m.ClassComponent {
-  view(vnode: m.Vnode) {
-    return <HelloWorld Comp={Strong} />;
-    //   <HelloWorld>
-    //     <Strong title="Nwe Title" />
-    //   </HelloWorld>
-    // );
+class App extends MitrhilTsxComponent {
+  view(vnode: m.CVnode) {
+    return <HelloWorld title={t => <Test title={t} />}>gfsgfsg</HelloWorld>;
   }
 }
 
