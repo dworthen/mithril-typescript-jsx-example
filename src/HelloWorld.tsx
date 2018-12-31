@@ -1,10 +1,11 @@
-import m, { Attributes } from "mithril";
+import m from "mithril";
 import { MitrhilTsxComponent } from "./JsxNamespace";
 
 // import { MithrilTsxComponent } from "mithril-tsx-component";
 
 export interface Attrs {
   title: (t: string) => JSX.Element;
+  render: typeof MitrhilTsxComponent;
   // title: string;
 }
 
@@ -19,9 +20,11 @@ export default class HelloWorld extends MitrhilTsxComponent<Attrs> {
 
   view({ attrs, children }: m.CVnode<Attrs>): m.CVnode<Attrs> {
     let Comp = attrs.title;
+    let Ren = attrs.render;
     return (
       <h1>
         <Testing />
+        <Ren />
         {children}
         {Comp("afdafd")}
       </h1>

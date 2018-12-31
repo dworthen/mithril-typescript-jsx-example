@@ -14,9 +14,22 @@ class Test extends MitrhilTsxComponent<{ title: string }> {
   }
 }
 
+class Bold extends MitrhilTsxComponent<{}> {
+  view(vnode: m.CVnode<{}>) {
+    return <h1>Testing HOC</h1>;
+  }
+}
+
 class App extends MitrhilTsxComponent {
   view(vnode: m.CVnode) {
-    return <HelloWorld title={t => <Test title={t} />}>gfsgfsg</HelloWorld>;
+    return (
+      <HelloWorld
+        render={Bold as typeof MitrhilTsxComponent}
+        title={t => <Test title={t} />}
+      >
+        gfsgfsg
+      </HelloWorld>
+    );
   }
 }
 

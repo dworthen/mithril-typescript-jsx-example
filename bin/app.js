@@ -1901,8 +1901,10 @@ var HelloWorld = /** @class */ (function (_super) {
     HelloWorld.prototype.view = function (_a) {
         var attrs = _a.attrs, children = _a.children;
         var Comp = attrs.title;
+        var Ren = attrs.render;
         return (mithril_1.default("h1", null,
             mithril_1.default(Testing, null),
+            mithril_1.default(Ren, null),
             children,
             Comp("afdafd")));
     };
@@ -1979,13 +1981,23 @@ var Test = /** @class */ (function (_super) {
     };
     return Test;
 }(JsxNamespace_1.MitrhilTsxComponent));
+var Bold = /** @class */ (function (_super) {
+    __extends(Bold, _super);
+    function Bold() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Bold.prototype.view = function (vnode) {
+        return mithril_1.default("h1", null, "Testing HOC");
+    };
+    return Bold;
+}(JsxNamespace_1.MitrhilTsxComponent));
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     App.prototype.view = function (vnode) {
-        return mithril_1.default(HelloWorld_1.default, { title: function (t) { return mithril_1.default(Test, { title: t }); } }, "gfsgfsg");
+        return (mithril_1.default(HelloWorld_1.default, { render: Bold, title: function (t) { return mithril_1.default(Test, { title: t }); } }, "gfsgfsg"));
     };
     return App;
 }(JsxNamespace_1.MitrhilTsxComponent));
