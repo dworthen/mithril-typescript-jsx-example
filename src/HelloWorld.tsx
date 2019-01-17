@@ -5,7 +5,10 @@ import { MitrhilTsxComponent } from "./JsxNamespace";
 
 export interface Attrs {
   title: (t: string) => JSX.Element;
-  render: typeof MitrhilTsxComponent;
+  // render: typeof MitrhilTsxComponent;
+  render: {
+    new (a: m.CVnode): MitrhilTsxComponent;
+  };
   // title: string;
 }
 

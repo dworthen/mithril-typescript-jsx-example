@@ -23,10 +23,7 @@ class Bold extends MitrhilTsxComponent<{}> {
 class App extends MitrhilTsxComponent {
   view(vnode: m.CVnode) {
     return (
-      <HelloWorld
-        render={Bold as typeof MitrhilTsxComponent}
-        title={t => <Test title={t} />}
-      >
+      <HelloWorld render={Bold} title={t => <Test title={t} />}>
         gfsgfsg
       </HelloWorld>
     );
